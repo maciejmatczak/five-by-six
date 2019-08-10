@@ -80,3 +80,16 @@ drill_writer.CreateDrillandMapFilesSet(
     aGenDrill=True,
     aGenMap=False
 )
+
+
+layers_preview = [
+    ("F.SilkS", pcbnew.F_SilkS, "Silk top"),
+    ("F.Mask", pcbnew.F_Mask, "Mask top"),
+    ("Edge.Cuts", pcbnew.Edge_Cuts, "Edges"),
+]
+
+pctl.OpenPlotfile("preview", pcbnew.PLOT_FORMAT_PDF, "preview")
+for layer_info in layers_preview:
+    pctl.SetLayer(layer_info[1])
+    pctl.PlotLayer()
+pctl.ClosePlot()

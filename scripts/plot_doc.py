@@ -64,12 +64,6 @@ layers_bottom = [
     ("Edge.Cuts", pcbnew.Edge_Cuts, "Edges"),
 ]
 
-layers_preview = [
-    ("F.SilkS", pcbnew.F_SilkS, "Silk top"),
-    ("F.Mask", pcbnew.F_Mask, "Mask top"),
-    ("Edge.Cuts", pcbnew.Edge_Cuts, "Edges"),
-]
-
 pctl.OpenPlotfile("doc_front", pcbnew.PLOT_FORMAT_PDF, "doc_front")
 for layer_info in layers_front:
     pctl.SetLayer(layer_info[1])
@@ -79,13 +73,6 @@ pctl.ClosePlot()
 popt.SetMirror(True)
 pctl.OpenPlotfile("doc_bottom", pcbnew.PLOT_FORMAT_PDF, "doc_bottom")
 for layer_info in layers_bottom:
-    pctl.SetLayer(layer_info[1])
-    pctl.PlotLayer()
-pctl.ClosePlot()
-
-popt.SetMirror(False)
-pctl.OpenPlotfile("preview", pcbnew.PLOT_FORMAT_PDF, "preview")
-for layer_info in layers_preview:
     pctl.SetLayer(layer_info[1])
     pctl.PlotLayer()
 pctl.ClosePlot()
