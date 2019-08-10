@@ -1,8 +1,11 @@
 from invoke import task
 from pathlib import Path
 
+
+PROJECT = 'five_by_six'
 FAB = './FAB'
 
+# look out for slug genertion!
 PCBS = [
     'pcb/five_by_six.kicad_pcb',
     'case/bottom/bottom.kicad_pcb',
@@ -30,7 +33,7 @@ def plot_all(c):
     # assuming first one is a pcb which needs docs files as well
     first = True
     for pcb in PCBS:
-        slug = pcb.split('/')[0]
+        slug = '_'.join(pcb.split('/')[0:-1])
 
         if not Path(pcb).exists():
             print(f'==> {pcb} not found, omitting!')
@@ -42,4 +45,4 @@ def plot_all(c):
         first = False
 
         c.run(f'./scripts/plot_fab.py {pcb} {FAB}/fab/{slug}')
-        c.run(f'7z a {FAB}/fab/{slug}.zip ./{FAB}/fab/*')
+        c.run(f'7z a {FAB}/fab/{PROJECT}_{slug}.zip ./{FAB}/fab/*')
