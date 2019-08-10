@@ -29,11 +29,11 @@ Master sketch approach was used, learned with mr Ha Gei's [video](https://www.yo
 ![case](images/case.png)
 
 ## Automations
-All the actions are hold in `tasks.py` files which are handled by [invoke](http://www.pyinvoke.org/). Case and PCB designs has it's own `tasks.py` which are design specific. Global one is used mainly for creating fabrication files.
+All the actions are held in `tasks.py` files which are handled by [invoke](http://www.pyinvoke.org/). Case and PCB designs has it's own `tasks.py` which are design specific. Global one is used for creating fabrication files.
 
-Plotting scripts are built on [plotter](https://github.com/akshmakov/pcbops_template/blob/master/kicad_cicd/plotter.py) from [Andrey Shmakov](https://github.com/akshmakov). He also gave a nice talk during KiCon 2019 ([video](https://www.youtube.com/watch?v=cQ-iFtBBwFc)).
+Plotting scripts are based on [plotter](https://github.com/akshmakov/pcbops_template/blob/master/kicad_cicd/plotter.py) from [Andrey Shmakov](https://github.com/akshmakov). He also gave a nice talk during KiCon 2019 ([video](https://www.youtube.com/watch?v=cQ-iFtBBwFc)).
 
-`circles_to_holes.py` was created to easily transfer FreeCAD design hole data to drill information.
+`circles_to_holes.py` was created to easily transfer FreeCAD design hole data to mounting holes/drill information.
 
 ## Development setup
 This software versions was used:
@@ -46,9 +46,14 @@ Clone the repository, download submodules:
 git submodule update --init --recursive
 ```
 
-Under Linux environment KiCad libraries are setup for system wide python. The easiest way to install dependencies is to:
+Under Linux environment (at least for Manjaro and KiCad from official packages) KiCad's python packages are setup for system wide python. The easiest way to install dependencies is to:
 ```
 pip install -r requirements.txt --user
+```
+
+Create .env file in root directory with path to KiCad's MountingHole library being set as in example:
+```
+KICAD_MOUNTING_HOLE_PATH = '/usr/share/kicad/modules/MountingHole.pretty'
 ```
 
 ## Workflow
@@ -57,11 +62,11 @@ Short description of step by step procedure of development:
    - design case and pcb contour in FreeCAD
    - export designs to DXFs
    - load case DXFs into empty KiCad projects, save, close
-   - while being under `five-by-six/case` directory, run `inv circle-to-holes`, which would exchange every circle to proper M2 padded mounting holes
+   - while being under `five-by-six/case` directory, run `inv circle-to-holes`, which would exchange every circle to proper M2 padded mounting hole
  - pcb:
    - design schematic, open pcb
    - load pcb contour DXF from case design
    - route PCB
-   - run `inv circle-to-holes` which would exchange `Edge.Cuts` circles to 5mm drill holes (for standoffs)
- - making fabrication files
+   - run `inv circle-to-holes` which would exchange circles to 5mm drill holes (for standoffs)
+ - fabrication files
    - in root directory run `inv plot-all`; all gerbers should be plotted, zipped + some basic documentation and preview pdfs created as well
