@@ -5,7 +5,7 @@
 Based (pretty much copied) from Andrey Shmakov:
 https://github.com/akshmakov/pcbops_template/blob/master/kicad_cicd/plotter.py
 
-Also great talk from KiCon 2019: 
+Also great talk from KiCon 2019:
 PCBOps : Applying CI/CD To PCB Design Projects
 https://www.youtube.com/watch?v=cQ-iFtBBwFc
 '''
