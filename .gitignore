@@ -1,3 +1,6 @@
+# build files, gerbers, docs, etc
+FAB
+
 .svg2shenzhen-cache
 *.FCStd1
 
