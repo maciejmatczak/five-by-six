@@ -1,7 +1,15 @@
 from invoke import task
 from pcbnew import LoadBoard, FromMM, wxPoint
+from dotenv import load_dotenv
+from os import environ
+
+
+load_dotenv()
 
 KICAD_PCB = './five_by_six.kicad_pcb'
+
+MH_PATH = environ['KICAD_MOUNTING_HOLE_PATH']
+MH_NAME = 'MountingHole_5mm'
 
 
 @task
@@ -25,3 +33,9 @@ def place_switches(c):
             m.SetOrientation(270*10)
 
     b.Save(b.GetFileName())
+
+
+@task
+def circles_to_holes(c):
+    c.run(f'../scripts/circles_to_holes.py {KICAD_PCB} \
+        {MH_PATH} {MH_NAME}')
