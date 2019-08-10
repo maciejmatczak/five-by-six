@@ -45,4 +45,4 @@ def plot_all(c):
         first = False
 
         c.run(f'./scripts/plot_fab.py {pcb} {FAB}/fab/{slug}')
-        c.run(f'7z a {FAB}/fab/{PROJECT}_{slug}.zip ./{FAB}/fab/*')
+        c.run(f'7z a {FAB}/fab/{PROJECT}_{slug}.zip ./{FAB}/fab/{slug}/*')
