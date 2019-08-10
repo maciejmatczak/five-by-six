@@ -7,7 +7,7 @@ PCBS = [
     'pcb/five_by_six.kicad_pcb',
     'case/bottom/bottom.kicad_pcb',
     'case/plate/plate.kicad_pcb',
-    'case/cover_ic/cover_ic.kicad_pcb',
+    'case/cover_uc/cover_uc.kicad_pcb',
     'case/cover_jack/cover_jack.kicad_pcb'
 ]
 
